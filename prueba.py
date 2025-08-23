@@ -14,7 +14,7 @@ from email.mime.image import MIMEImage
 import pygame
 import threading
 import time
-
+# py -m pip install pillow opencv-python numpy face_recognition pygame
 # Configuración global
 DB_FILE = './EBI para Municipio/ebi_database.db'
 ALARM_SOUND = 'alarm.wav'  # Archivo de sonido de alarma (debe existir)
