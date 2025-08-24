@@ -1,0 +1,25 @@
+2025-08-24 14:25:33,075 - INFO - Mixer de pygame inicializado correctamente
+2025-08-24 14:25:33,087 - INFO - Base de datos de intrusos creada/verificada correctamente
+2025-08-24 14:25:33,098 - INFO - Base de datos de detecciones creada/verificada correctamente
+2025-08-24 14:25:33,101 - INFO - Intrusos cargados: 0
+2025-08-24 14:25:33,134 - INFO - Detecciones cargadas: 0
+2025-08-24 14:25:38,530 - INFO - Cámara iniciada correctamente
+2025-08-24 14:25:39,618 - INFO - Detección iniciada
+2025-08-24 14:25:45,914 - INFO - Detección detenida
+2025-08-24 14:26:03,703 - INFO - Detección detenida
+2025-08-24 14:26:04,007 - INFO - Cámara detenida
+2025-08-24 14:26:06,415 - INFO - Cámara iniciada correctamente
+2025-08-24 14:26:31,151 - INFO - Intrusos cargados: 1
+2025-08-24 14:26:31,151 - INFO - Intruso guardado: brian
+2025-08-24 14:26:32,623 - INFO - Cámara detenida
+2025-08-24 14:26:35,015 - INFO - Cámara iniciada correctamente
+2025-08-24 14:27:03,924 - INFO - Detección iniciada
+2025-08-24 14:27:09,353 - INFO - Detección guardada: brian
+2025-08-24 14:27:13,175 - INFO - Email de alerta enviado para: brian
+2025-08-24 14:27:23,184 - INFO - Imagen temporal eliminada: ./temp_images\temp_detection_20250824_142709.jpg
+2025-08-24 14:27:55,738 - INFO - Detección guardada: brian
+2025-08-24 14:27:57,787 - INFO - Detección detenida
+2025-08-24 14:27:59,089 - INFO - Detección detenida
+2025-08-24 14:27:59,474 - INFO - Cámara detenida
+2025-08-24 14:27:59,872 - INFO - Email de alerta enviado para: brian
+2025-08-24 14:28:00,456 - INFO - Detección detenida
