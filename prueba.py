@@ -21,6 +21,9 @@ import queue
 import shutil
 from collections import deque
 from math import hypot
+#py -m pip install tk pillow opencv-python face_recognition numpy pygame
+#pip install tk pillow opencv-python face_recognition numpy pygame
+
 
 # Configuración de logging
 logging.basicConfig(
