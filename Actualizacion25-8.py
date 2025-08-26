@@ -255,19 +255,22 @@ class EBIApp:
         frame.tkraise()
         self.current_frame = frame
         
+        # Detener la detección si no estamos en BuscarIntrusoFrame
+        if cont != BuscarIntrusoFrame and self.detection_active:
+            self.stop_detection()
+        
         # Detener la cámara si no estamos en un frame que la use
         if cont not in [BuscarIntrusoFrame, CargarPersonaFrame] and self.camera_active:
             self.stop_camera()
-        # Si vamos a BuscarIntrusoFrame o CargarPersonaFrame y la cámara no está activa, intentar iniciarla
-        elif cont in [BuscarIntrusoFrame, CargarPersonaFrame] and not self.camera_active and self.camera_available:
-            if not self.start_camera():
-                # Si no se pudo iniciar la cámara, mostrar mensaje
-                if isinstance(self.current_frame, CargarPersonaFrame):
-                    self.current_frame.show_camera_error()
         
-        # Iniciar detección automáticamente si estamos en BuscarIntrusoFrame
-        if cont == BuscarIntrusoFrame and self.camera_available:
-            self.start_detection()
+        # Si vamos a BuscarIntrusoFrame y la cámara no está activa, intentar iniciarla
+        elif cont == BuscarIntrusoFrame and not self.camera_active and self.camera_available:
+            self.start_camera()
+            # NO iniciar detección automáticamente - esperar que usuario la active
+        
+        # Si vamos a CargarPersonaFrame, iniciar cámara pero NO detección
+        elif cont == CargarPersonaFrame and not self.camera_active and self.camera_available:
+            self.start_camera()
     
     def start_camera(self):
         if not self.camera_active:
@@ -394,6 +397,11 @@ class EBIApp:
             return False
     
     def start_detection(self):
+        # No iniciar detección si estamos en modo de carga de persona
+        if isinstance(self.current_frame, CargarPersonaFrame):
+            logging.info("Detección no iniciada: modo de carga de persona activo")
+            return False
+            
         if not self.camera_active:
             if not self.start_camera():
                 return False
@@ -420,6 +428,11 @@ class EBIApp:
         last_detection_time = 0
         
         while self.detection_active and not self.stop_detection_flag.is_set():
+            # No detectar si estamos en modo de carga de persona
+            if isinstance(self.current_frame, CargarPersonaFrame):
+                time.sleep(0.1)  # Pequeña pausa
+                continue
+                
             current_time = time.time()
             
             # Realizar detección solo si ha pasado el intervalo
@@ -555,7 +568,7 @@ class EBIApp:
     
     def send_email_alert(self, face_data, img_path):
         try:
-            msg = MIMEPart()
+            msg = MIMEMultipart()
             msg['From'] = EMAIL_CONFIG['email']
             msg['To'] = EMAIL_CONFIG['recipient']
             
@@ -797,14 +810,22 @@ class CargarPersonaFrame(tk.Frame):
         # Al volver, detener la cámara si está activa y limpiar flags
         self.collect_frames = False
         self.recent_frames.clear()
+        
+        # Detener la cámara pero NO iniciar detección automática
         if self.controller.camera_active:
             self.controller.stop_camera()
+        
+        # Volver al inicio sin iniciar detección
         self.controller.show_frame(StartFrame)
 
     def start_capture_process(self):
         """
         Inicia el proceso de captura de foto con cuenta regresiva
         """
+        # Asegurarse de que la detección esté DESACTIVADA durante la captura
+        if self.controller.detection_active:
+            self.controller.stop_detection()
+            
         # Iniciar cámara si está apagada
         if not self.controller.camera_active:
             ok = self.controller.start_camera()
@@ -986,7 +1007,6 @@ class BuscarIntrusoFrame(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
-        self.controller.current_frame = self
         self.configure(bg='#2c3e50')
         
         # Configurar grid para expansión
@@ -1004,7 +1024,7 @@ class BuscarIntrusoFrame(tk.Frame):
         title.grid(row=1, column=0, pady=20)
         
         # Etiqueta de estado
-        self.status_label = tk.Label(self, text="Iniciando detección...", font=("Arial", 14), bg='#2c3e50', fg='#2ecc71')
+        self.status_label = tk.Label(self, text="Cámara lista - Presione 'Iniciar Detección'", font=("Arial", 14), bg='#2c3e50', fg='#f39c12')
         self.status_label.grid(row=2, column=0, pady=10)
         
         # Frame para la cámara
@@ -1025,27 +1045,18 @@ class BuscarIntrusoFrame(tk.Frame):
         btn_frame = tk.Frame(self, bg='#2c3e50')
         btn_frame.grid(row=4, column=0, pady=20)
         
-        self.btn_toggle = tk.Button(btn_frame, text="Detener Detección", font=("Arial", 14), 
-                                   command=self.toggle_detection, width=20, height=2, bg='#e74c3c', fg='white')
+        self.btn_toggle = tk.Button(btn_frame, text="Iniciar Detección", font=("Arial", 14), 
+                                   command=self.toggle_detection, width=20, height=2, bg='#27ae60', fg='white')
         self.btn_toggle.pack(side='left', padx=10)
         
-        # Iniciar detección automáticamente si hay cámara disponible
-        if self.controller.camera_available:
-            self.controller.root.after(1000, self.start_detection_auto)
-        else:
+        # Verificar estado de la cámara pero NO iniciar detección automática
+        if not self.controller.camera_available:
             self.status_label.config(text="Cámara no disponible", fg='#e74c3c')
             self.btn_toggle.config(state='disabled')
     
     def on_resize(self, event):
         """Manejar redimensionamiento para responsividad"""
         pass
-    
-    def start_detection_auto(self):
-        """Iniciar detección automáticamente al entrar en este frame"""
-        if not self.controller.detection_active and self.controller.camera_available:
-            if self.controller.start_detection():
-                self.status_label.config(text="Detección activa - Buscando intrusos...", fg='#2ecc71')
-                self.btn_toggle.config(text="Detener Detección", bg='#e74c3c')
     
     def stop_and_go_back(self):
         self.controller.stop_detection()
@@ -1161,7 +1172,7 @@ class HistorialFrame(tk.Frame):
             rows = c.fetchall()
             
             for row in rows:
-                # Convertir valor de autorizado a texto
+                # Convertir valor de autorizado to texto
                 tipo = "AUTORIZADO" if row[3] else "INTRUSO"
                 self.tree.insert("", "end", values=(row[0], row[1], row[2], tipo, row[4]))
             
