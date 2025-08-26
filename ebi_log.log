@@ -1,0 +1,70 @@
+2025-08-25 21:13:11,202 - INFO - Mixer de pygame inicializado correctamente
+2025-08-25 21:13:11,218 - INFO - Base de datos de personas creada/verificada correctamente
+2025-08-25 21:13:11,227 - INFO - Base de datos de detecciones creada/verificada correctamente
+2025-08-25 21:13:11,233 - INFO - Personas cargadas: 0
+2025-08-25 21:13:11,260 - INFO - Detecciones cargadas: 0
+2025-08-25 21:13:14,462 - INFO - Cámara iniciada correctamente
+2025-08-25 21:13:37,802 - INFO - Personas cargadas: 1
+2025-08-25 21:13:37,803 - INFO - Persona guardada: brian - Autorizado: 1
+2025-08-25 21:13:39,743 - INFO - Cámara detenida
+2025-08-25 21:13:41,957 - INFO - Cámara iniciada correctamente
+2025-08-25 21:13:43,705 - INFO - Detección iniciada
+2025-08-25 21:13:44,314 - INFO - Detección guardada: brian
+2025-08-25 21:13:47,803 - INFO - Detección guardada: brian
+2025-08-25 21:13:51,299 - INFO - Detección guardada: brian
+2025-08-25 21:13:54,644 - INFO - Detección guardada: brian
+2025-08-25 21:13:58,170 - INFO - Detección guardada: DESCONOCIDO
+2025-08-25 21:13:59,958 - INFO - Detección guardada: brian
+2025-08-25 21:14:03,329 - INFO - Detección guardada: brian
+2025-08-25 21:14:03,476 - INFO - Email de alerta enviado para: DESCONOCIDO
+2025-08-25 21:14:04,995 - INFO - Detección detenida
+2025-08-25 21:14:06,540 - INFO - Detección detenida
+2025-08-25 21:14:06,947 - INFO - Cámara detenida
+2025-08-25 21:14:16,343 - INFO - Mixer de pygame inicializado correctamente
+2025-08-25 21:14:16,345 - INFO - Base de datos de personas creada/verificada correctamente
+2025-08-25 21:14:16,350 - INFO - Base de datos de detecciones creada/verificada correctamente
+2025-08-25 21:14:16,352 - INFO - Personas cargadas: 1
+2025-08-25 21:14:16,380 - INFO - Detecciones cargadas: 7
+2025-08-25 21:14:22,814 - INFO - Cámara iniciada correctamente
+2025-08-25 21:14:22,974 - INFO - Detección iniciada
+2025-08-25 21:14:23,476 - INFO - Detección guardada: brian
+2025-08-25 21:14:27,014 - INFO - Detección guardada: brian
+2025-08-25 21:14:30,366 - INFO - Detección guardada: brian
+2025-08-25 21:14:33,737 - INFO - Detección guardada: brian
+2025-08-25 21:14:37,020 - INFO - Detección guardada: brian
+2025-08-25 21:14:40,443 - INFO - Detección guardada: brian
+2025-08-25 21:14:43,753 - INFO - Detección guardada: brian
+2025-08-25 21:14:47,423 - INFO - Detección guardada: brian
+2025-08-25 21:14:52,215 - INFO - Detección guardada: brian
+2025-08-25 21:14:59,396 - INFO - Detección guardada: brian
+2025-08-25 21:15:01,964 - INFO - Detección guardada: DESCONOCIDO
+2025-08-25 21:15:04,952 - INFO - Detección guardada: brian
+2025-08-25 21:15:05,767 - INFO - Detección detenida
+2025-08-25 21:15:06,081 - INFO - Cámara detenida
+2025-08-25 21:15:10,024 - INFO - Mixer de pygame inicializado correctamente
+2025-08-25 21:15:10,026 - INFO - Base de datos de personas creada/verificada correctamente
+2025-08-25 21:15:10,032 - INFO - Base de datos de detecciones creada/verificada correctamente
+2025-08-25 21:15:10,035 - INFO - Personas cargadas: 1
+2025-08-25 21:15:10,075 - INFO - Detecciones cargadas: 19
+2025-08-25 21:15:14,725 - INFO - Cámara iniciada correctamente
+2025-08-25 21:15:25,363 - INFO - Detección iniciada
+2025-08-25 21:15:25,947 - INFO - Detección guardada: DESCONOCIDO
+2025-08-25 21:15:27,462 - INFO - Detección detenida
+2025-08-25 21:15:30,780 - INFO - Email de alerta enviado para: DESCONOCIDO
+2025-08-25 21:15:31,469 - INFO - Detección detenida
+2025-08-25 21:15:31,878 - INFO - Cámara detenida
+2025-08-25 21:15:39,136 - INFO - Mixer de pygame inicializado correctamente
+2025-08-25 21:15:39,139 - INFO - Base de datos de personas creada/verificada correctamente
+2025-08-25 21:15:39,149 - INFO - Base de datos de detecciones creada/verificada correctamente
+2025-08-25 21:15:39,152 - INFO - Personas cargadas: 1
+2025-08-25 21:15:39,179 - INFO - Detecciones cargadas: 20
+2025-08-25 21:15:43,104 - INFO - Cámara iniciada correctamente
+2025-08-25 21:15:46,519 - INFO - Detección iniciada
+2025-08-25 21:15:47,113 - INFO - Detección guardada: brian
+2025-08-25 21:15:50,356 - INFO - Detección guardada: brian
+2025-08-25 21:15:52,362 - INFO - Detección guardada: DESCONOCIDO
+2025-08-25 21:15:56,008 - INFO - Detección guardada: brian
+2025-08-25 21:15:56,795 - INFO - Email de alerta enviado para: DESCONOCIDO
+2025-08-25 21:15:57,044 - INFO - Detección detenida
+2025-08-25 21:15:59,386 - INFO - Detección detenida
+2025-08-25 21:15:59,746 - INFO - Cámara detenida
